@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.5'
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'com.example.auth'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 웹 및 RESTful API 개발
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // Spring Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // JPA (DB ORM)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // H2 Database (개발/테스트용 인메모리 DB)
+    runtimeOnly 'com.h2database:h2'
+
+    // Lombok (보일러플레이트 코드 감소)
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // JWT 라이브러리 (io.jsonwebtoken) - 0.12.3 버전 사용
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.12.3'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+
+    // 테스트 의존성
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
