@@ -1,7 +1,7 @@
 package com.example.spaceflow_back.jwt.dto.request;
 
 
-import com.jwt.domain.User;
+import com.example.spaceflow_back.jwt.domain.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

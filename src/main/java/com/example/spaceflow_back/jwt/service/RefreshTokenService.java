@@ -1,10 +1,10 @@
 package com.example.spaceflow_back.jwt.service;
 
 
-import com.jwt.domain.RefreshToken;
-import com.jwt.domain.User;
-import com.jwt.exception.InvalidTokenException;
-import com.jwt.repository.RefreshTokenRepository;
+import com.example.spaceflow_back.jwt.domain.RefreshToken;
+import com.example.spaceflow_back.jwt.domain.User;
+import com.example.spaceflow_back.jwt.exception.InvalidTokenException;
+import com.example.spaceflow_back.jwt.repository.RefreshTokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

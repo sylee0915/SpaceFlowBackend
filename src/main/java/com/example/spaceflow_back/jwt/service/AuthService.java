@@ -1,17 +1,18 @@
 package com.example.spaceflow_back.jwt.service;
 
-import com.jwt.config.JwtProperties;
-import com.jwt.domain.RefreshToken;
-import com.jwt.domain.User;
-import com.jwt.dto.request.LoginRequest;
-import com.jwt.dto.request.SignupRequest;
-import com.jwt.dto.response.LoginResponse;
-import com.jwt.dto.response.TokenRefreshResponse;
-import com.jwt.exception.InvalidTokenException;
-import com.jwt.exception.UserNotFoundException;
-import com.jwt.repository.UserRepository;
-import com.jwt.security.CustomUserDetails;
-import com.jwt.security.JwtTokenProvider;
+
+import com.example.spaceflow_back.config.JwtProperties;
+import com.example.spaceflow_back.jwt.domain.RefreshToken;
+import com.example.spaceflow_back.jwt.domain.User;
+import com.example.spaceflow_back.jwt.dto.request.LoginRequest;
+import com.example.spaceflow_back.jwt.dto.request.SignupRequest;
+import com.example.spaceflow_back.jwt.dto.response.LoginResponse;
+import com.example.spaceflow_back.jwt.dto.response.TokenRefreshResponse;
+import com.example.spaceflow_back.jwt.exception.InvalidTokenException;
+import com.example.spaceflow_back.jwt.exception.UserNotFoundException;
+import com.example.spaceflow_back.jwt.repository.UserRepository;
+import com.example.spaceflow_back.jwt.security.CustomUserDetails;
+import com.example.spaceflow_back.jwt.security.JwtTokenProvider;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 // TokenRefreshRequest DTO는 이제 사용되지 않으므로 import를 제거해야 합니다.

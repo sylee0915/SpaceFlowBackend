@@ -1,13 +1,12 @@
 package com.example.spaceflow_back.jwt.controller;
 
-import com.jwt.dto.request.LoginRequest;
-import com.jwt.dto.request.SignupRequest;
-// TokenRefreshRequest DTO는 이제 사용되지 않으므로 import를 제거합니다.
-// import com.jwt.dto.request.TokenRefreshRequest;
-import com.jwt.dto.response.LoginResponse;
-import com.jwt.dto.response.TokenRefreshResponse;
-import com.jwt.security.CustomUserDetails;
-import com.jwt.service.AuthService;
+
+import com.example.spaceflow_back.jwt.dto.request.LoginRequest;
+import com.example.spaceflow_back.jwt.dto.request.SignupRequest;
+import com.example.spaceflow_back.jwt.dto.response.LoginResponse;
+import com.example.spaceflow_back.jwt.dto.response.TokenRefreshResponse;
+import com.example.spaceflow_back.jwt.security.CustomUserDetails;
+import com.example.spaceflow_back.jwt.service.AuthService;
 import jakarta.servlet.http.HttpServletResponse; // HTTP 응답 처리를 위해 추가
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;

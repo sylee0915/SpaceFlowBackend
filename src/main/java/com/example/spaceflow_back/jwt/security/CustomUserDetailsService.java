@@ -1,6 +1,6 @@
 package com.example.spaceflow_back.jwt.security;
 
-import com.jwt.repository.UserRepository;
+import com.example.spaceflow_back.jwt.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

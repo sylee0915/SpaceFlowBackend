@@ -1,6 +1,6 @@
 package com.example.spaceflow_back.config;
 
-import com.jwt.security.JwtAuthenticationFilter;
+import com.example.spaceflow_back.jwt.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

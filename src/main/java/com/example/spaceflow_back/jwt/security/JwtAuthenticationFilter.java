@@ -1,6 +1,6 @@
 package com.example.spaceflow_back.jwt.security;
 
-import com.jwt.config.JwtProperties;
+import com.example.spaceflow_back.config.JwtProperties;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,9 +1,9 @@
 package com.example.spaceflow_back.jwt.controller;
 
-import com.jwt.domain.User;
-import com.jwt.repository.UserRepository;
-import com.jwt.security.CustomUserDetails;
-import com.jwt.exception.UserNotFoundException;
+import com.example.spaceflow_back.jwt.domain.User;
+import com.example.spaceflow_back.jwt.exception.UserNotFoundException;
+import com.example.spaceflow_back.jwt.repository.UserRepository;
+import com.example.spaceflow_back.jwt.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

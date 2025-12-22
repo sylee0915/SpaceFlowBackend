@@ -1,6 +1,6 @@
 package com.example.spaceflow_back.jwt.security;
 
-import com.jwt.config.JwtProperties;
+import com.example.spaceflow_back.config.JwtProperties;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
