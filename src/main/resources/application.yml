@@ -1,0 +1,44 @@
+spring:
+  h2:
+    console:
+      enabled: false
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://127.0.0.1:3307/spaceflowdb
+    username: root
+    password: 1234
+
+# 4. JWT Custom ?? (JwtProperties.java?? ??)
+jwt:
+  # ?? ??? ???? ?? ?. (base64 ???? ??? ??, ?? 32??? ??)
+  # ? ?? ??? ??? ?????? ? ???.
+  secret-key: aGVsbG93b3JsZGhhdGlzamV3dHNlY3JldGtlZm9ydGVzdGluZ2FwcGxpY2F0aW9uCg==
+
+  # Access Token ?? ?? (???) - ?: 30?
+  access-token-expiration-time: 1800000
+
+  # Refresh Token ?? ?? (???) - ?: 7?
+  refresh-token-expiration-time: 604800000
+
+  # ?? ?? Prefix (?? ??)
+  token-prefix: Bearer
+
+  # ??? ?? HTTP ?? ??
+  header-string: Authorization
+
+server:
+  port: 8080
+
+logging:
+  level:
+    # ?? ?? ?? ?? ??
+    org.hibernate.SQL: debug
