@@ -114,11 +114,20 @@ public class AuthService {
         User user = userRepository.findById(userId)
                 .orElseThrow(UserNotFoundException::new);
 
-        // 새 Access Token 생성을 위해 UserDetails 기반 Authentication 객체를 수동으로 생성
+        CustomUserDetails userDetails = CustomUserDetails.builder()
+                .id(user.getId())
+                .username(user.getEmail())
+                .password(user.getPassword())
+                .companyId(user.getCompanyId()) // 추가된 필드
+                .access(user.getAccess())       // 추가된 필드
+                .authority(user.getRole())      // 기존 역할
+                .build();
+
+// 새 Access Token 생성을 위해 Authentication 객체 생성
         Authentication newAuthentication = new UsernamePasswordAuthenticationToken(
-                new CustomUserDetails(user.getId(), user.getEmail(), user.getPassword(), user.getRole()),
+                userDetails, // 위에서 만든 userDetails 객체 사용
                 null,
-                user.getAuthorities()
+                userDetails.getAuthorities()
         );
 
         String newAccessToken = jwtTokenProvider.generateAccessToken(newAuthentication);

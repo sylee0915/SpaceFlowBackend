@@ -13,13 +13,18 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-@Table(name = "users") // 테이블명 충돌 방지를 위해 users로 지정
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
+
+    // Company 엔티티가 있다면 ManyToOne 등으로 연관관계를 맺는 것이 좋습니다.
+    // 만약 단순 ID 저장 방식이라면 아래와 같이 작성합니다.
+    @Column(name = "company_id")
+    private Long companyId;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -30,11 +35,14 @@ public class User {
     @Column(nullable = false)
     private String nickname;
 
-    // 역할 필드 (단순화를 위해 ROLE_USER만 사용)
+    // ROLE_ADMIN, ROLE_BUSINESS, ROLE_USER 등으로 저장
     @Column(nullable = false)
     private String role;
 
-    // CustomUserDetailsService에서 사용될 권한 리스트 반환 메서드
+    // PENDING, COMPLETED 등 상태값
+    @Column(nullable = false)
+    private String access;
+
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(this.role));
     }
