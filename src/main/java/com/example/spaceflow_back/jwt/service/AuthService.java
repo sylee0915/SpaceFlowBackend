@@ -1,6 +1,8 @@
 package com.example.spaceflow_back.jwt.service;
 
 
+import com.example.spaceflow_back.company.domain.Company;
+import com.example.spaceflow_back.company.repository.CompanyRepository;
 import com.example.spaceflow_back.config.JwtProperties;
 import com.example.spaceflow_back.jwt.domain.RefreshToken;
 import com.example.spaceflow_back.jwt.domain.User;
@@ -35,19 +37,27 @@ public class AuthService {
     private final JwtTokenProvider jwtTokenProvider;
     private final RefreshTokenService refreshTokenService;
     private final JwtProperties jwtProperties;
+    private final CompanyRepository companyRepository;
 
     /**
      * 회원가입 로직
      * @param request 회원가입 요청 DTO
      * @return 가입된 User 엔티티
      */
+
+    // 2. signup 메서드 수정
     @Transactional
     public User signup(SignupRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new IllegalArgumentException("이미 존재하는 이메일입니다: " + request.getEmail());
         }
 
-        User user = request.toEntity(passwordEncoder);
+        // 2. 회사 ID로 실제 Company 객체 조회
+        Company company = companyRepository.findById(request.getCompanyId())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회사 ID입니다: " + request.getCompanyId()));
+
+        // 3. 찾은 company 객체를 넘겨줌
+        User user = request.toEntity(passwordEncoder, company);
         return userRepository.save(user);
     }
 
@@ -118,9 +128,9 @@ public class AuthService {
                 .id(user.getId())
                 .username(user.getEmail())
                 .password(user.getPassword())
-                .companyId(user.getCompanyId()) // 추가된 필드
+                .companyId(user.getCompany() != null ? user.getCompany().getId() : null)// 추가된 필드
                 .access(user.getAccess())       // 추가된 필드
-                .authority(user.getRole())      // 기존 역할
+                .authority(user.getRole().name())     // 기존 역할
                 .build();
 
 // 새 Access Token 생성을 위해 Authentication 객체 생성
