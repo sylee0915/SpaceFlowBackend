@@ -45,7 +45,12 @@ public class UserController {
         response.put("email", user.getEmail());
         response.put("nickname", user.getNickname());
         response.put("role", user.getRole());
-        response.put("companyId", user.getCompanyId()); // 추가!
+        // 수정 코드 (객체를 거쳐서 ID를 가져옴)
+        if (user.getCompany() != null) {
+            response.put("companyId", user.getCompany().getId());
+        } else {
+            response.put("companyId", null); // 소속 회사가 없을 경우 처리
+        } // 추가!
         response.put("access", user.getAccess());       // 추가!
 
         return ResponseEntity.ok(response);
